@@ -1,4 +1,4 @@
-package com.example.carteirinhadigitalsenai.ui.theme
+package com.example.carteirinhadigitalsenai.core.desingsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

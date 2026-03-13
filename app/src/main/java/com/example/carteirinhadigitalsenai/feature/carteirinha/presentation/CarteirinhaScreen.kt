@@ -1,4 +1,4 @@
-package com.example.carteirinhadigitalsenai
+package com.example.carteirinhadigitalsenai.feature.carteirinha.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -18,11 +18,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.carteirinhadigitalsenai.R
+import com.example.carteirinhadigitalsenai.feature.carteirinha.presentation.component.LabelText
+import com.example.carteirinhadigitalsenai.feature.carteirinha.presentation.component.ValueText
 import com.rafaelcosta.myapplication.QrCode
 
 
 @Composable
-fun CartirinhaView (modifier: Modifier = Modifier) {
+fun CartirinhaScreen (modifier: Modifier = Modifier) {
     Box() {
         Image(
             painter = painterResource(R.drawable.d9003ca94a2692db7bf8e88d09f52616),
@@ -52,7 +55,7 @@ fun CartirinhaView (modifier: Modifier = Modifier) {
                     .weight(.1f)
             )
             Image(
-                painter = painterResource(R.drawable._4194216_icone_de_avatar_humano_distintivo_de_uma_pessoa_simbolo_de_perfil_de_midia_social_o_simbolo_de_uma_pessoa_vetor),
+                painter = painterResource(R.drawable.icone_de_maquete_de_personagem_de_homem_redondo_cor_plana_icone_de_homem_redondo_azul_camiseta_e_modelo_de_personagem_de_cabelo_castanho_icone_vetor_774778_2418_925624113),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -68,11 +71,11 @@ fun CartirinhaView (modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 LabelText(
-                    "Nome",
+                    "Nome:",
                     modifier = Modifier.weight(1f)
                 )
                 ValueText(
-                    value = "Leticia Uhren",
+                    value = "Willian Bruno",
                     modifier = Modifier.weight(4f)
                 )
             }
@@ -84,8 +87,8 @@ fun CartirinhaView (modifier: Modifier = Modifier) {
             ){
 
                 LabelText(
-                    "Curso",
-                    modifier = Modifier. weight (1f)
+                    "Curso:",
+                    modifier = Modifier.weight(1f)
                 )
                 ValueText(
                     value = "Desenvolvimento de Sistemas",
