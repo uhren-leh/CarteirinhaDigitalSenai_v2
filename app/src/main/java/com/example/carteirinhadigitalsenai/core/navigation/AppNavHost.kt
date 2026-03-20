@@ -4,8 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.carteirinhadigitalsenai.feature.auth.presentation.LoginScreen
-import com.example.carteirinhadigitalsenai.feature.carteirinha.presentation.CartirinhaScreen
+import com.example.carteirinhadigitalsenai.feature.auth.presentation.screen.LoginScreen
+import com.example.carteirinhadigitalsenai.feature.carteirinha.presentation.screen.CarteirinhaScreen
+import com.example.carteirinhadigitalsenai.feature.home.presentation.screen.HomeScreen
 
 @Composable
 fun AppNavHost(
@@ -13,13 +14,22 @@ fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Routes.Home.route
-    ){
-        composable(Routes.Login.route){
-            LoginScreen()
+        startDestination = Routes.Login.route
+    ) {
+        composable(Routes.Login.route) {
+            LoginScreen(
+                navController = navController
+            )
+        }
+        composable(Routes.Carteirinha.route) {
+            CarteirinhaScreen(
+
+            )
         }
         composable(Routes.Home.route){
-            CartirinhaScreen()
+            HomeScreen(
+             navController = navController
+            )
         }
     }
 }

@@ -1,8 +1,9 @@
 package com.example.carteirinhadigitalsenai.core.navigation
 
-sealed class Routes (val route: String) {
 
-    data object Login: Routes("Login")
+sealed class Routes(val route: String) {
+    data object Login : Routes("login")
+    data object Home : Routes("home")
 
-    data object Home: Routes("Home")
+    data object Carteirinha : Routes("carteirinha")
 }
