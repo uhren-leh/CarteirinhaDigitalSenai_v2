@@ -10,7 +10,7 @@ import androidx.compose.ui.text.style.TextAlign
 fun LabelText(
     label: String,
     modifier: Modifier = Modifier
-){
+) {
     Text(
         text = label,
         textAlign = TextAlign.Right,

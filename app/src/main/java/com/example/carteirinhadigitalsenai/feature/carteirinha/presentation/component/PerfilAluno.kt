@@ -15,14 +15,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.carteirinhadigitalsenai.R
 
 @Composable
-fun PerfilAluno(modifier: Modifier = Modifier) {
+fun PerfilAluno(
+    nome: String,
+    curso: String,
+    turma: String,
+    matricula: String,
+    unidade: String,
+    status: String,
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-        ,
+        modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(
             space = 10.dp,
@@ -30,7 +35,7 @@ fun PerfilAluno(modifier: Modifier = Modifier) {
         )
     ) {
         Image(
-            painter = painterResource(R.drawable._4194216_icone_de_avatar_humano_distintivo_de_uma_pessoa_simbolo_de_perfil_de_midia_social_o_simbolo_de_uma_pessoa_vetor),
+            painter = painterResource(R.drawable.avatar_login),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -40,15 +45,43 @@ fun PerfilAluno(modifier: Modifier = Modifier) {
         )
         InfoAluno(
             labelText = "Nome",
-            valueText = "Leticia Uhren",
-            modifier = Modifier.fillMaxWidth(),
+            valueText = nome,
+            modifier = Modifier.fillMaxWidth()
         )
         InfoAluno(
             labelText = "Curso",
-            valueText = "Técnico em Desenvolvimento de Sistemas",
+            valueText = curso,
             fontWeight = FontWeight.Normal,
             fontSize = 20.sp,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+        )
+        InfoAluno(
+            labelText = "Turma",
+            valueText = turma,
+            fontWeight = FontWeight.Normal,
+            fontSize = 18.sp,
+            modifier = Modifier.fillMaxWidth()
+        )
+        InfoAluno(
+            labelText = "Matrícula",
+            valueText = matricula,
+            fontWeight = FontWeight.Normal,
+            fontSize = 18.sp,
+            modifier = Modifier.fillMaxWidth()
+        )
+        InfoAluno(
+            labelText = "Unidade",
+            valueText = unidade,
+            fontWeight = FontWeight.Normal,
+            fontSize = 18.sp,
+            modifier = Modifier.fillMaxWidth()
+        )
+        InfoAluno(
+            labelText = "Status",
+            valueText = status,
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }

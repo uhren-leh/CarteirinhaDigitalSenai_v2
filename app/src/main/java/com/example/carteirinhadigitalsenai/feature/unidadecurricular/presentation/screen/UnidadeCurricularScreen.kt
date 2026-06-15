@@ -1,4 +1,4 @@
-package com.example.carteirinhadigitalsenai.feature.carteirinha.presentation.screen
+package com.example.carteirinhadigitalsenai.feature.unidadecurricular.presentation.screen
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,20 +11,20 @@ import com.example.carteirinhadigitalsenai.core.designsystem.component.AppDrawer
 import com.example.carteirinhadigitalsenai.core.designsystem.component.AppScaffold
 
 @Composable
-fun CarteirinhaScreen(
+fun UnidadeCurricularScreen(
     usuarioNome: String,
     usuarioDescricao: String,
     drawerItems: List<AppDrawerItem>,
     onLogoutClick: () -> Unit,
     modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
-    viewModel: CarteirinhaViewModel = viewModel()
+    viewModel: UnidadeCurricularViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     AppScaffold(
-        title = "Carteirinha",
-        subtitle = "Documento digital do aluno",
+        title = "Unidades Curriculares",
+        subtitle = "Notas, médias e faltas",
         usuarioNome = usuarioNome,
         usuarioDescricao = usuarioDescricao,
         drawerItems = drawerItems,
@@ -32,11 +32,11 @@ fun CarteirinhaScreen(
         showBackButton = true,
         onBackClick = onBackClick
     ) { innerPadding ->
-        CarteirinhaContent(
+        UnidadeCurricularContent(
             uiState = uiState,
             onEvent = { event ->
                 when (event) {
-                    CarteirinhaEvent.OnVoltarClick -> onBackClick()
+                    UnidadeCurricularEvent.OnVoltarClick -> onBackClick()
                     else -> viewModel.onEvent(event)
                 }
             },

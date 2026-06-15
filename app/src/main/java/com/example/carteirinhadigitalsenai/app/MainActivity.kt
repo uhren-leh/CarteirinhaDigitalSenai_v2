@@ -20,7 +20,6 @@ import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.example.carteirinhadigitalsenai.core.desingsystem.theme.CarteirinhaDigitalSenaiTheme
-import com.example.carteirinhadigitalsenai.feature.carteirinha.presentation.screen.CarteirinhaScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -29,7 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-          App()
+            App()
         }
     }
 }

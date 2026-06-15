@@ -1,12 +1,14 @@
-package com.example.carteirinhadigitalsenai.core.desingsystem.theme
+package com.example.carteirinhadigitalsenai.core.designsystem.theme
 
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.text.googlefonts.Font
-import com.example.carteirinhadigitalsenai.R
+import com.rafaelcosta.carteirinhadigital_4devm_t1.R
 
 val provider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
@@ -23,7 +25,7 @@ val bodyFontFamily = FontFamily(
 
 val displayFontFamily = FontFamily(
     Font(
-        googleFont = GoogleFont("Actor"),
+        googleFont = GoogleFont("Akaya Kanadaka"),
         fontProvider = provider,
     )
 )
@@ -32,18 +34,36 @@ val displayFontFamily = FontFamily(
 val baseline = Typography()
 
 val AppTypography = Typography(
-    displayLarge = baseline.displayLarge.copy(fontFamily = displayFontFamily),
-    displayMedium = baseline.displayMedium.copy(fontFamily = displayFontFamily),
-    displaySmall = baseline.displaySmall.copy(fontFamily = displayFontFamily),
-    headlineLarge = baseline.headlineLarge.copy(fontFamily = displayFontFamily),
-    headlineMedium = baseline.headlineMedium.copy(fontFamily = displayFontFamily),
-    headlineSmall = baseline.headlineSmall.copy(fontFamily = displayFontFamily),
-    titleLarge = baseline.titleLarge.copy(fontFamily = displayFontFamily),
+    displayLarge = baseline.displayLarge.copy(
+        fontFamily = displayFontFamily,
+    ),
+    displayMedium = baseline.displayMedium.copy(
+        fontFamily = displayFontFamily
+    ),
+    displaySmall = baseline.displaySmall.copy(
+        fontFamily = displayFontFamily
+    ),
+    headlineLarge = baseline.headlineLarge.copy(
+        fontFamily = displayFontFamily
+    ),
+    headlineMedium = baseline.headlineMedium.copy(
+        fontFamily = displayFontFamily
+    ),
+    headlineSmall = baseline.headlineSmall.copy(
+        fontFamily = displayFontFamily
+    ),
+    titleLarge = baseline.titleLarge.copy(
+        fontFamily = displayFontFamily,
+        fontSize = 30.sp,
+        fontWeight = FontWeight.Bold
+    ),
     titleMedium = baseline.titleMedium.copy(fontFamily = displayFontFamily),
     titleSmall = baseline.titleSmall.copy(fontFamily = displayFontFamily),
     bodyLarge = baseline.bodyLarge.copy(fontFamily = bodyFontFamily),
     bodyMedium = baseline.bodyMedium.copy(fontFamily = bodyFontFamily),
-    bodySmall = baseline.bodySmall.copy(fontFamily = bodyFontFamily),
+    bodySmall = baseline.bodySmall.copy(
+        fontFamily = bodyFontFamily
+    ),
     labelLarge = baseline.labelLarge.copy(fontFamily = bodyFontFamily),
     labelMedium = baseline.labelMedium.copy(fontFamily = bodyFontFamily),
     labelSmall = baseline.labelSmall.copy(fontFamily = bodyFontFamily),

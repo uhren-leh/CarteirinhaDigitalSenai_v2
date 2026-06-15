@@ -6,7 +6,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,21 +19,17 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.carteirinhadigitalsenai.R
-import com.example.carteirinhadigitalsenai.core.desingsystem.theme.CarteirinhaDigitalSenaiTheme
-import com.example.carteirinhadigitalsenai.feature.carteirinha.presentation.component.PerfilAluno
-import com.rafaelcosta.myapplication.QrCode
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun CarteirinhaContent(
-    qrCodeContent: String = "numero de matricula do aluno",
+    uiState: CarteirinhaUiState,
+    onEvent: (CarteirinhaEvent) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(
-        modifier = modifier.fillMaxSize()
-    ) {
+    Box(modifier = modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(R.drawable.d9003ca94a2692db7bf8e88d09f52616),
+            painter = painterResource(R.drawable.plano_de_fundo),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -36,49 +37,98 @@ fun CarteirinhaContent(
                 .alpha(0.7f)
         )
 
-        Column(
-            modifier = Modifier
-                .safeDrawingPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceAround
-        ) {
-            Image(
-                painter = painterResource(R.drawable.senai_s_o_paulo_logo),
-                contentDescription = "Logo do SENAI São Paulo",
-                modifier = Modifier.fillMaxWidth(0.6f)
-            )
+        when {
+            uiState.isLoading -> {
+                Column(
+                    modifier = Modifier.align(Alignment.Center),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    CircularProgressIndicator()
+                    Text("Buscando dados da carteirinha...")
+                }
+            }
 
-            PerfilAluno(
-                modifier = Modifier.fillMaxWidth(0.9f)
-            )
+            uiState.errorMessage != null -> {
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Text(
+                        text = uiState.errorMessage,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                    Button(onClick = { onEvent(CarteirinhaEvent.OnTentarNovamenteClick) }) {
+                        Text("Tentar novamente")
+                    }
+                }
+            }
 
-            QrCode(
-                "90000000001417130546",
-                modifier = Modifier.fillMaxWidth(0.6f)
-            )
+            uiState.carteirinha != null -> {
+                CarteirinhaDadosContent(
+                    carteirinha = uiState.carteirinha,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
         }
     }
 }
 
-@Preview(
-    showBackground = true,
-    showSystemUi = true
-)
 @Composable
-fun CarteirinhaContentPreviewClaro() {
-    CarteirinhaDigitalSenaiTheme(darkTheme = false) {
-        CarteirinhaContent()
+private fun CarteirinhaDadosContent(
+    carteirinha: Carteirinha,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .safeDrawingPadding()
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceAround
+    ) {
+        Image(
+            painter = painterResource(R.drawable.senai_s_o_paulo_logo),
+            contentDescription = "Logo do SENAI São Paulo",
+            modifier = Modifier.fillMaxWidth(0.6f)
+        )
+
+        PerfilAluno(
+            nome = carteirinha.nome,
+            curso = carteirinha.curso,
+            turma = carteirinha.turma,
+            matricula = carteirinha.matricula,
+            unidade = carteirinha.unidade,
+            status = carteirinha.status,
+            modifier = Modifier.fillMaxWidth(0.9f)
+        )
+
+        QrCode(
+            conteudo = carteirinha.qrCodeContent,
+            modifier = Modifier.fillMaxWidth(0.6f)
+        )
     }
 }
 
-@Preview(
-    showBackground = true,
-    showSystemUi = true
-)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun CarteirinhaContentPreviewEscuro() {
-    CarteirinhaDigitalSenaiTheme(darkTheme = true) {
-        CarteirinhaContent()
+fun CarteirinhaContentPreviewClaro() {
+    CarteirinhaDigitalTheme(darkTheme = false) {
+        CarteirinhaContent(
+            uiState = CarteirinhaUiState(
+                carteirinha = Carteirinha(
+                    nome = "Leticia Uhren",
+                    curso = "Técnico em Desenvolvimento de Sistemas",
+                    turma = "4DEVM-T1",
+                    matricula = "20260001",
+                    unidade = "SENAI Anchieta",
+                    status = "Ativo",
+                    qrCodeContent = "20260001"
+                )
+            ),
+            onEvent = {}
+        )
     }
 }
